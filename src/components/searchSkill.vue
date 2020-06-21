@@ -1,7 +1,7 @@
 <template>
   <div class='search-skill-wrap'>
     <div class='search-skill-main'>
-      <h3>查询当前武器附魔元素技能</h3>
+      <h1>查询当前武器附魔元素技能</h1>
       <a-checkbox-group
         class='element-checkbox-group'
         v-model='value'
@@ -63,6 +63,7 @@ export default {
   color: white;
 }
 .search-skill-main {
+  border-radius:40px;
   background: -moz-linear-gradient(
     top,
     rgba(255, 255, 255, 0.8) 0%,

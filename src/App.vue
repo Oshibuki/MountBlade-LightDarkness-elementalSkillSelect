@@ -1,18 +1,19 @@
 <template>
-  <div class="root">
+  <div class='root'>
     <search-skill></search-skill>
     <select-element></select-element>
   </div>
 </template>
 
 <script>
-import searchSkill from "./components/searchSkill.vue";
-import selectElement from "./components/selectElement.vue";
+import searchSkill from './components/searchSkill';
+import selectElement from './components/selectElement';
+
 export default {
   components: {
     searchSkill,
-    selectElement
-  }
+    selectElement,
+  },
 };
 </script>
 

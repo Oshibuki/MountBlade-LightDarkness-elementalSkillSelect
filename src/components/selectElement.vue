@@ -80,10 +80,10 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius:40px;
   min-height: 100vh;
 }
 .select-element-main {
+  border-radius:40px;
   background: -moz-linear-gradient(
     top,
     rgba(255, 255, 255, 0.8) 0%,

@@ -12,19 +12,18 @@
         :disabled="disabled"
         @change="handleChange"
         @selectChange="handleSelectChange"
-        @scroll="handleScroll"
       />
       <div class="element-results">
         <h1 class="element-results-title">所需附魔元素</h1>
-        <a-tag color="#2db7f5" v-for="element in selectedElement"
-          :key="element">{{ element }}</a-tag>
+        <a-tag color="#2db7f5" v-for="element in selectedElement" :key="element">{{ element }}</a-tag>
       </div>
       <a-alert message="所选元素超出4槽位上限" type="warning" show-icon v-if="selectedElement.length>4"/>
     </div>
   </div>
 </template>
 <script>
-import { options, flags, masks } from '../data';
+import { options, flags, masks } from "../data";
+import Vue from "vue";
 
 const skills = Object.keys(masks);
 export default {
@@ -36,7 +35,7 @@ export default {
         key: i.toString(),
         title: `${skills[i]}`,
         description: `${masks[skills[i]].description}`,
-        disabled: false,
+        disabled: false
       });
     }
 
@@ -47,7 +46,7 @@ export default {
       targetKeys: oriTargetKeys,
       selectedKeys: [],
       disabled: false,
-      selectedElement,
+      selectedElement
     };
   },
   methods: {
@@ -65,10 +64,21 @@ export default {
       const currentMask = this.targetKeys
         .map(i => masks[skills[i]].flag)
         .reduce((acc, cur) => acc | cur, 0);
+      this.updateSkillSelectable(currentMask);
       this.selectedElement = Object.keys(flags).filter(
-        i => (flags[i] & currentMask) !== 0);
+        i => (flags[i] & currentMask) !== 0
+      );
     },
-  },
+    updateSkillSelectable(currentMask) {
+      console.log(currentMask);
+      this.skillData.forEach((skill, index) => {
+        if ((masks[skill.title].flag | currentMask) === 31) {
+          skill.disabled = true;
+          Vue.set(this.skillData, index, { ...skill });
+        }
+      });
+    }
+  }
 };
 </script>
 <style>
@@ -83,7 +93,7 @@ export default {
   min-height: 100vh;
 }
 .select-element-main {
-  border-radius:40px;
+  border-radius: 40px;
   background: -moz-linear-gradient(
     top,
     rgba(255, 255, 255, 0.8) 0%,
